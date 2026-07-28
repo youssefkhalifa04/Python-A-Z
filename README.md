@@ -1,16 +1,14 @@
 # Python Course
 
-This workspace contains a step-by-step introduction to Python.
+This workspace contains a beginner-friendly Python course.
 
 ## Course Structure
 
 ### Chapter 1 - Fundamentals
-
-- [Demonstration](Chapter%201%20\(%20Fundamentals%20\)/demonstration)
-- [Exercise](Chapter%201%20\(%20Fundamentals%20\)/exercise)
+- [Demonstration](Chapter%201%20(%20Fundamentals%20)/demonstration)
+- [Exercise](Chapter%201%20(%20Fundamentals%20)/exercise)
 
 Topics:
-
 - Variables
 - Variable types
 - Input and output
@@ -21,13 +19,11 @@ Topics:
 - Iterative structures
 
 ### Chapter 2 - Data Structures
-
-- [Demonstration](Chapter%202%20\(%20Data%20Structures%20\)/demonstration)
-- [Exercise](Chapter%202%20\(%20Data%20Structures%20\)/exercise)
-- [Annex](Chapter%202%20\(%20Data%20Structures%20\)/annex)
+- [Demonstration](Chapter%202%20(%20Data%20Structures%20)/demonstration)
+- [Exercise](Chapter%202%20(%20Data%20Structures%20)/exercise)
+- [Annex](Chapter%202%20(%20Data%20Structures%20)/annex)
 
 Topics:
-
 - Lists
 - Sequences
 - Tuples
@@ -35,12 +31,10 @@ Topics:
 - Sets
 
 ### Chapter 3 - Functions and Procedures
-
-- [Demonstration](Chapter%203%20\(%20Functions%20%20and%20Procedures%20\)/demonstration)
-- [Exercise](Chapter%203%20\(%20Functions%20%20and%20Procedures%20\)/exercise)
+- [Demonstration](Chapter%203%20(%20Functions%20%20and%20Procedures%20)/demonstration)
+- [Exercise](Chapter%203%20(%20Functions%20%20and%20Procedures%20)/exercise)
 
 Topics:
-
 - Function definitions and calls
 - Parameters and return values
 - Global and local variables
@@ -48,30 +42,37 @@ Topics:
 - Recursion
 
 ### Chapter 4 - Error Handling
-
-- [Demonstration](Chapter%204%20\(%20Error%20Handling%20\)/demonstration)
-- [Exercise](Chapter%204%20\(%20Error%20Handling%20\)/exercise)
+- [Demonstration](Chapter%204%20(%20Error%20Handling%20)/demonstration)
+- [Exercise](Chapter%204%20(%20Error%20Handling%20)/exercise)
 
 Topics:
-
 - try / except
 - Multiple exceptions
 - else / finally
 - Raising exceptions
 
 ### Chapter 5 - Object Oriented Programming
-
-- [Demonstration](Chapter%205%20\(%20OOP%20\)/demonstration)
-- [Exercise](Chapter%205%20\(%20OOP%20\)/exercise)
+- [Demonstration](Chapter%205%20(%20OOP%20)/demonstration)
+- [Exercise](Chapter%205%20(%20OOP%20)/exercise)
 
 Topics:
-
 - Classes and objects
 - Encapsulation
 - Inheritance
 - Polymorphism
 - Abstract classes
 - Interfaces
+
+### Chapter 6 - Unit Testing
+- [Demonstration](Chapter%206%20(%20Unit%20Testing%20)/demonstration)
+- [Exercise](Chapter%206%20(%20Unit%20Testing%20)/exercise)
+
+Topics:
+- Why testing matters
+- Assertions
+- unittest basics
+- Test classes and test methods
+- setUp and tearDown
 
 ## How To Use
 
@@ -87,3 +88,4 @@ Topics:
 3. Chapter 3
 4. Chapter 4
 5. Chapter 5
+6. Chapter 6
