@@ -36,3 +36,9 @@ This folder contains practical exercises for the fifth chapter of the course.
 2. Create two classes such as `CardPayment` and `CashPayment` that implement it.
 3. Put the objects in a list.
 4. Call the same method on each object and observe different results.
+
+## Exercise 6 - Composition
+1. Create a class named `Address` with `city` and `country` attributes.
+2. Create a class named `Person` that contains an `Address` object.
+3. Add a method to display the person's profile.
+4. Create one person object and show its address.

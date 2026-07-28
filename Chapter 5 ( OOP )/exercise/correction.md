@@ -114,3 +114,27 @@ payments = [CardPayment(), CashPayment()]
 for payment in payments:
     payment.pay(20)
 ```
+
+## Exercise 6 - Composition
+```python
+class Address:
+    def __init__(self, city, country):
+        self.city = city
+        self.country = country
+
+
+class Person:
+    def __init__(self, name, address):
+        self.name = name
+        self.address = address
+
+    def show_profile(self):
+        print(f"Name: {self.name}")
+        print(f"City: {self.address.city}")
+        print(f"Country: {self.address.country}")
+
+
+address = Address("Tunis", "Tunisia")
+person = Person("Sara", address)
+person.show_profile()
+```

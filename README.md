@@ -7,6 +7,7 @@ This workspace contains a beginner-friendly Python course.
 ### Chapter 1 - Fundamentals
 - [Demonstration](Chapter%201%20(%20Fundamentals%20)/demonstration)
 - [Exercise](Chapter%201%20(%20Fundamentals%20)/exercise)
+- [FAQ](Chapter%201%20(%20Fundamentals%20)/docs/faq.md)
 
 Topics:
 - Variables
@@ -22,6 +23,7 @@ Topics:
 - [Demonstration](Chapter%202%20(%20Data%20Structures%20)/demonstration)
 - [Exercise](Chapter%202%20(%20Data%20Structures%20)/exercise)
 - [Annex](Chapter%202%20(%20Data%20Structures%20)/annex)
+- [FAQ](Chapter%202%20(%20Data%20Structures%20)/docs/faq.md)
 
 Topics:
 - Lists
@@ -33,6 +35,7 @@ Topics:
 ### Chapter 3 - Functions and Procedures
 - [Demonstration](Chapter%203%20(%20Functions%20%20and%20Procedures%20)/demonstration)
 - [Exercise](Chapter%203%20(%20Functions%20%20and%20Procedures%20)/exercise)
+- [FAQ](Chapter%203%20(%20Functions%20%20and%20Procedures%20)/docs/faq.md)
 
 Topics:
 - Function definitions and calls
@@ -44,6 +47,7 @@ Topics:
 ### Chapter 4 - Error Handling
 - [Demonstration](Chapter%204%20(%20Error%20Handling%20)/demonstration)
 - [Exercise](Chapter%204%20(%20Error%20Handling%20)/exercise)
+- [FAQ](Chapter%204%20(%20Error%20Handling%20)/docs/faq.md)
 
 Topics:
 - try / except
@@ -54,6 +58,7 @@ Topics:
 ### Chapter 5 - Object Oriented Programming
 - [Demonstration](Chapter%205%20(%20OOP%20)/demonstration)
 - [Exercise](Chapter%205%20(%20OOP%20)/exercise)
+- [FAQ](Chapter%205%20(%20OOP%20)/docs/faq.md)
 
 Topics:
 - Classes and objects
@@ -66,6 +71,7 @@ Topics:
 ### Chapter 6 - Unit Testing
 - [Demonstration](Chapter%206%20(%20Unit%20Testing%20)/demonstration)
 - [Exercise](Chapter%206%20(%20Unit%20Testing%20)/exercise)
+- [FAQ](Chapter%206%20(%20Unit%20Testing%20)/docs/faq.md)
 
 Topics:
 - Why testing matters
