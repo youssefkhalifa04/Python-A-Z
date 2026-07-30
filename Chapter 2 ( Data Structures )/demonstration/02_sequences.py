@@ -18,3 +18,5 @@ print("Slicing a string:", text[0:3])
 print("Iterating over a sequence:")
 for item in numbers:
     print(item)
+
+

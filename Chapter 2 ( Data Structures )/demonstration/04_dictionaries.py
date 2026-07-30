@@ -8,7 +8,7 @@ print("--- Dictionaries ---")
 student = {
     "name": "Sara",
     "age": 21,
-    "city": "Rabat",
+    "city": "",
 }
 
 print("Student dictionary:", student)
@@ -21,3 +21,5 @@ student["grade"] = "A"
 print("Updated dictionary:", student)
 print("Keys:", list(student.keys()))
 print("Values:", list(student.values()))
+
+

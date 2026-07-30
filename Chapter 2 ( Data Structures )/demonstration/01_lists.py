@@ -9,7 +9,7 @@ fruits = ["apple", "banana", "orange"]
 print("Original list:", fruits)
 
 fruits.append("mango")
-print("After append:", fruits)
+print("After append:", fruits) 
 
 print("First item:", fruits[0])
 print("Last item:", fruits[-1])

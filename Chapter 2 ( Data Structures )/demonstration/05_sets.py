@@ -9,6 +9,7 @@ languages = {"Python", "Java", "Python", "C++"}
 print("Set with duplicates removed:", languages)
 
 languages.add("JavaScript")
+
 print("After adding an item:", languages)
 
 print("Contains Python?", "Python" in languages)

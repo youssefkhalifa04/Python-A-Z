@@ -17,3 +17,9 @@ print("Green:", green)
 print("Blue:", blue)
 
 print("Tuple length:", len(rgb))
+
+
+a = 10 
+b = 20 
+
+a , b = b , a

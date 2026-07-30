@@ -20,3 +20,30 @@ This folder contains short exercises for the second chapter of the course.
 3. Add a new key-value pair.
 4. Create a set with some repeated values and show that duplicates are removed.
 5. Display one set operation such as union or intersection.
+
+## Exercise 3 - Palindrome
+1. Ask the user to enter a string.
+2. Check whether the string is a palindrome.
+3. Display a clear message showing the result.
+
+## Exercise 4 - Minimum value in a list
+1. Create a list of at least five numbers.
+2. Find the smallest number in the list.
+3. Display the minimum value.
+
+## Exercise 5 - Divisors of a number
+1. Ask the user for a positive number.
+2. Find all the positive divisors of that number.
+3. Display the divisors one by one.
+
+## Exercise 6 - Digits only
+1. Ask the user to enter a string.
+2. Check whether the string contains only digits.
+3. Display a message for both the true and false cases.
+
+## Exercise 7 - Inventory analysis
+1. Create a list of dictionaries where each dictionary represents a product with `name`, `category`, `price`, and `quantity`.
+2. Find the total value of the inventory.
+3. Display the most expensive product.
+4. Display all unique categories.
+5. Calculate the total quantity for each category.
