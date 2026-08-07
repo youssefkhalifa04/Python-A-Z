@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QCM - Chapters 1 and 2</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --primary: #0b57d0;
+      --success: #0f8a5f;
+      --danger: #b42318;
+      --warning: #b54708;
+      --border: #d0d7e2;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(180deg, #f7fbff 0%, var(--bg) 100%);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+
+    .header {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 1.55rem;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .status {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.95rem;
+    }
+
+    .pill {
+      background: #eef3ff;
+      color: #1e3a8a;
+      border: 1px solid #c9d8ff;
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-weight: 600;
+    }
+
+    .question {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+
+    .q-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+
+    .q-title {
+      margin: 0;
+      font-size: 1.03rem;
+    }
+
+    .topic {
+      color: var(--muted);
+      font-size: 0.86rem;
+      white-space: nowrap;
+    }
+
+    .options {
+      display: grid;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .option-btn {
+      width: 100%;
+      text-align: left;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fbfcff;
+      padding: 10px 12px;
+      cursor: pointer;
+      color: var(--text);
+      transition: 0.15s ease;
+    }
+
+    .option-btn:hover { border-color: #9bb8f8; background: #f3f7ff; }
+    .option-btn:disabled { cursor: not-allowed; opacity: 0.95; }
+
+    .option-btn.correct {
+      border-color: #79d2ae;
+      background: #ebfff5;
+    }
+
+    .option-btn.wrong {
+      border-color: #f5a7a0;
+      background: #fff3f2;
+    }
+
+    .feedback {
+      margin-top: 10px;
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 0.93rem;
+      border: 1px solid transparent;
+      display: none;
+    }
+
+    .feedback.ok {
+      display: block;
+      border-color: #79d2ae;
+      background: #effcf5;
+      color: #075a3b;
+    }
+
+    .feedback.bad {
+      display: block;
+      border-color: #f5a7a0;
+      background: #fff3f2;
+      color: #7f1d1d;
+    }
+
+    .feedback strong {
+      display: inline-block;
+      margin-right: 6px;
+    }
+
+    .footer {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    button.main {
+      border: 0;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    button.secondary {
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    #report {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      margin-top: 20px;
+      display: none;
+    }
+
+    #report h2 { margin-top: 0; }
+
+    .report-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin: 12px 0;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px;
+      background: #fcfdff;
+    }
+
+    .good { color: var(--success); font-weight: 700; }
+    .warn { color: var(--warning); font-weight: 700; }
+    .bad { color: var(--danger); font-weight: 700; }
+
+    ul { margin: 8px 0 0 18px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <section class="header">
+      <h1>QCM - Python Chapters 1 & 2</h1>
+      <p class="subtitle">Answer each question once. You get instant feedback with explanation, mistake reason, and focus tip.</p>
+      <div class="status">
+        <span class="pill" id="scorePill">Score: 0</span>
+        <span class="pill" id="progressPill">Answered: 0 / 40</span>
+      </div>
+    </section>
+
+    <div id="quiz"></div>
+
+    <section class="footer">
+      <button class="main" id="finishBtn" disabled>Show Final Report</button>
+      <button class="secondary" id="resetBtn">Reset Quiz</button>
+    </section>
+
+    <section id="report"></section>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        topic: "Chapter 1 - Variables",
+        question: "Why do we usually store data in variables instead of writing values directly everywhere?",
+        options: [
+          "To make code shorter, reusable, and easier to update",
+          "Because Python cannot print direct values",
+          "Because variables are always faster than literals",
+          "Because variables avoid all runtime errors"
+        ],
+        correct: 0,
+        whyWrong: "Variables improve readability and maintainability; they are not about removing all errors or mandatory syntax.",
+        focus: "Focus on maintainability and code reuse."
+      },
+      {
+        topic: "Chapter 1 - Variables",
+        question: "When should you rename a variable in your code?",
+        options: [
+          "When its current name does not clearly describe its role",
+          "Only when the code fails to run",
+          "Never, because names do not matter",
+          "Only in very long programs"
+        ],
+        correct: 0,
+        whyWrong: "Clear names are essential for understanding and maintaining code.",
+        focus: "Use meaningful variable names that express intent."
+      },
+      {
+        topic: "Chapter 1 - Types",
+        question: "When should you keep a value as str instead of converting to int?",
+        options: [
+          "When the value is textual or an identifier, not for arithmetic",
+          "Only when conversion raises an error",
+          "Never, everything should be int",
+          "Only inside loops"
+        ],
+        correct: 0,
+        whyWrong: "Choose the type based on meaning and operations you need.",
+        focus: "Think about what the data represents before converting."
+      },
+      {
+        topic: "Chapter 1 - Types",
+        question: "Why use type() during learning?",
+        options: [
+          "To verify assumptions about data types before operations",
+          "To convert values automatically",
+          "To format output in colors",
+          "To loop over data"
+        ],
+        correct: 0,
+        whyWrong: "type() inspects data, it does not convert or format values.",
+        focus: "Validate type assumptions when debugging beginner mistakes."
+      },
+      {
+        topic: "Chapter 1 - Input/Output",
+        question: "What is a common reason to convert input() result with int() or float()?",
+        options: [
+          "input() returns text by default, but math needs numeric types",
+          "input() already returns numbers",
+          "Conversion is required for print() to work",
+          "Conversion makes code shorter only"
+        ],
+        correct: 0,
+        whyWrong: "input() always returns a string; explicit conversion is needed for arithmetic.",
+        focus: "Link user input type to downstream operations."
+      },
+      {
+        topic: "Chapter 1 - Input/Output",
+        question: "When is f-string usually better than many comma-separated print arguments?",
+        options: [
+          "When you want a readable sentence with embedded variables",
+          "Only for integer values",
+          "Only inside loops",
+          "Never, comma style is always better"
+        ],
+        correct: 0,
+        whyWrong: "f-strings improve readability of formatted messages.",
+        focus: "Practice writing clear output messages with f-strings."
+      },
+      {
+        topic: "Chapter 1 - Arithmetic",
+        question: "When should you use // instead of / ?",
+        options: [
+          "When you need integer division (whole part)",
+          "When you need exact decimal values",
+          "When adding numbers",
+          "When comparing strings"
+        ],
+        correct: 0,
+        whyWrong: "// gives quotient without fractional part; / returns float division.",
+        focus: "Distinguish integer division and true division use cases."
+      },
+      {
+        topic: "Chapter 1 - Arithmetic",
+        question: "Why is modulo (%) useful in beginner programs?",
+        options: [
+          "It gives the remainder, useful for divisibility and parity checks",
+          "It sorts lists",
+          "It converts strings to numbers",
+          "It is only for advanced math libraries"
+        ],
+        correct: 0,
+        whyWrong: "Modulo is central for many logic tasks like odd/even and cycles.",
+        focus: "Practice % with divisibility examples."
+      },
+      {
+        topic: "Chapter 1 - Assignment",
+        question: "What does x += 3 communicate better than x = x + 3?",
+        options: [
+          "A direct update intent in compact form",
+          "That x becomes immutable",
+          "That x changes type automatically",
+          "That x is local only"
+        ],
+        correct: 0,
+        whyWrong: "Both forms update x, but += highlights incremental update intent.",
+        focus: "Recognize shorthand operators as readability tools."
+      },
+      {
+        topic: "Chapter 1 - Logical Operators",
+        question: "When should you use and in a condition?",
+        options: [
+          "When all sub-conditions must be true",
+          "When at least one must be true",
+          "When reversing a boolean",
+          "When iterating a list"
+        ],
+        correct: 0,
+        whyWrong: "and requires every condition to be true; or is for alternatives.",
+        focus: "Model condition logic with truth tables."
+      },
+      {
+        topic: "Chapter 1 - Logical Operators",
+        question: "What is a common beginner mistake with not?",
+        options: [
+          "Forgetting that not reverses the boolean result of the expression",
+          "Thinking not only works on numbers",
+          "Using not inside if",
+          "Combining not with and/or"
+        ],
+        correct: 0,
+        whyWrong: "not negates truthiness of the expression following it.",
+        focus: "Evaluate expression first, then apply negation mentally."
+      },
+      {
+        topic: "Chapter 1 - Conditions",
+        question: "Why is elif preferred over separate if blocks in many decision trees?",
+        options: [
+          "It ensures only one matching branch runs in ordered checks",
+          "It runs all matching branches",
+          "It cannot contain conditions",
+          "It only works with numbers"
+        ],
+        correct: 0,
+        whyWrong: "elif forms a single chain of alternatives; separate if blocks are independent.",
+        focus: "Design mutually exclusive logic with if/elif/else."
+      },
+      {
+        topic: "Chapter 1 - Conditions",
+        question: "When should else be used?",
+        options: [
+          "For the default action when prior conditions are false",
+          "For checking another condition",
+          "Only after loops",
+          "Only with strings"
+        ],
+        correct: 0,
+        whyWrong: "else is the fallback branch, not an additional condition.",
+        focus: "Define the default case explicitly."
+      },
+      {
+        topic: "Chapter 1 - Loops",
+        question: "When is while generally better than for range(...)?",
+        options: [
+          "When repetition depends on a condition that changes dynamically",
+          "When iteration count is fixed in advance",
+          "When iterating over every character in a string",
+          "When slicing lists"
+        ],
+        correct: 0,
+        whyWrong: "while is condition-driven; for range is count-driven.",
+        focus: "Choose loop type by problem nature: condition vs fixed count."
+      },
+      {
+        topic: "Chapter 1 - Loops",
+        question: "What should you verify first if a while loop never ends?",
+        options: [
+          "Whether loop condition can eventually become false",
+          "Whether print() is inside the loop",
+          "Whether there is an else block",
+          "Whether the variable names are short"
+        ],
+        correct: 0,
+        whyWrong: "Infinite loops usually come from condition/update logic issues.",
+        focus: "Track loop variable updates step by step."
+      },
+      {
+        topic: "Chapter 1 - Fundamentals Integration",
+        question: "Why is input validation important even in beginner exercises?",
+        options: [
+          "To avoid wrong assumptions that lead to errors and wrong output",
+          "Because Python always validates for you",
+          "Only for web apps",
+          "It is never needed in small scripts"
+        ],
+        correct: 0,
+        whyWrong: "Validation protects logic from unexpected user input.",
+        focus: "Before computation, check format/type/range assumptions."
+      },
+      {
+        topic: "Chapter 1 - Fundamentals Integration",
+        question: "When building a small program, what is a good order?",
+        options: [
+          "Read input, validate, process logic, then display output",
+          "Display output, then input, then validation",
+          "Process logic before reading input",
+          "Skip validation always"
+        ],
+        correct: 0,
+        whyWrong: "A clear pipeline improves correctness and readability.",
+        focus: "Use the input-validate-process-output mental model."
+      },
+
+      {
+        topic: "Chapter 2 - Lists",
+        question: "You need ordered data that you will modify often. Best choice?",
+        options: ["list", "tuple", "set", "dict"],
+        correct: 0,
+        whyWrong: "Lists are mutable and ordered, suited for frequent edits.",
+        focus: "Map each structure to mutability and order."
+      },
+      {
+        topic: "Chapter 2 - Lists",
+        question: "Why is append() common in beginner code?",
+        options: [
+          "It adds one item at the end in a clear way",
+          "It sorts the list automatically",
+          "It removes duplicates",
+          "It converts list into tuple"
+        ],
+        correct: 0,
+        whyWrong: "append() is a simple insertion method, not sorting/deduplication.",
+        focus: "Differentiate list methods by purpose."
+      },
+      {
+        topic: "Chapter 2 - Sequences",
+        question: "Which group are all sequences in Python?",
+        options: [
+          "Ordered collections that support indexing",
+          "Collections of key-value pairs only",
+          "Collections with unique items only",
+          "Objects that cannot be looped"
+        ],
+        correct: 0,
+        whyWrong: "Sequences share order and positional access.",
+        focus: "Think in common behaviors: index, slice, iterate, len."
+      },
+      {
+        topic: "Chapter 2 - Sequences",
+        question: "When is slicing most helpful?",
+        options: [
+          "When you need a part of data without manual index loops",
+          "When you need to add dictionary keys",
+          "When checking set membership",
+          "When converting float to int"
+        ],
+        correct: 0,
+        whyWrong: "Slicing extracts subsequences cleanly.",
+        focus: "Practice start:end on list, tuple, and string."
+      },
+      {
+        topic: "Chapter 2 - Tuples",
+        question: "What is the key reason to use a tuple?",
+        options: [
+          "To represent fixed data that should not be changed",
+          "To remove duplicates automatically",
+          "To store key-value pairs",
+          "To perform faster arithmetic"
+        ],
+        correct: 0,
+        whyWrong: "Tuples communicate immutability and stable structure.",
+        focus: "Use tuples for constant grouped values."
+      },
+      {
+        topic: "Chapter 2 - Tuples",
+        question: "When is tuple unpacking useful?",
+        options: [
+          "When assigning multiple related values to separate variables",
+          "When deleting tuple items",
+          "When sorting dictionaries",
+          "When checking string digits"
+        ],
+        correct: 0,
+        whyWrong: "Unpacking improves readability for fixed-size grouped data.",
+        focus: "Practice patterns like x, y = point."
+      },
+      {
+        topic: "Chapter 2 - Dictionaries",
+        question: "When is a dictionary better than a list?",
+        options: [
+          "When data has named fields and key-based access",
+          "When you only need positional indexes",
+          "When you need duplicates removed",
+          "When data must be immutable"
+        ],
+        correct: 0,
+        whyWrong: "Dictionaries are optimized for mapping labels to values.",
+        focus: "Model real-world entities with key-value pairs."
+      },
+      {
+        topic: "Chapter 2 - Dictionaries",
+        question: "Why use get(key, default) instead of direct key access in some cases?",
+        options: [
+          "To avoid KeyError and provide a safe fallback",
+          "To sort keys automatically",
+          "To convert values to strings",
+          "To force key creation always"
+        ],
+        correct: 0,
+        whyWrong: "get() is a safe retrieval pattern for optional keys.",
+        focus: "Handle missing-data scenarios gracefully."
+      },
+      {
+        topic: "Chapter 2 - Sets",
+        question: "What is a strong use case for sets?",
+        options: [
+          "Tracking unique items and quick membership testing",
+          "Storing ordered duplicates",
+          "Mapping keys to values",
+          "Slicing subsequences"
+        ],
+        correct: 0,
+        whyWrong: "Sets are for uniqueness and set algebra, not ordering or mapping.",
+        focus: "Reach for sets when uniqueness is the main requirement."
+      },
+      {
+        topic: "Chapter 2 - Sets",
+        question: "When would intersection be meaningful?",
+        options: [
+          "When finding common values between two collections",
+          "When appending one list item",
+          "When renaming dictionary keys",
+          "When converting input types"
+        ],
+        correct: 0,
+        whyWrong: "Intersection returns shared elements across sets.",
+        focus: "Use set operations for relationship analysis."
+      },
+      {
+        topic: "Chapter 2 - Copying",
+        question: "What is the key risk of shallow copy with nested structures?",
+        options: [
+          "Nested objects may still be shared with original",
+          "It always duplicates every nested object",
+          "It cannot copy lists",
+          "It deletes original data"
+        ],
+        correct: 0,
+        whyWrong: "Shallow copy duplicates top-level container only.",
+        focus: "Track references at each nesting level."
+      },
+      {
+        topic: "Chapter 2 - Copying",
+        question: "When is deep copy more appropriate?",
+        options: [
+          "When you need fully independent nested data",
+          "When there is no nested structure",
+          "When you want faster in-place updates",
+          "Only for tuples"
+        ],
+        correct: 0,
+        whyWrong: "Deep copy is needed when nested mutation should not affect original.",
+        focus: "Choose copy strategy based on independence requirements."
+      },
+      {
+        topic: "Chapter 2 - Algorithms",
+        question: "For finding minimum in a list manually, what is the usual strategy?",
+        options: [
+          "Start with first element as current min, then compare all others",
+          "Sort set and pick middle",
+          "Use dictionary keys only",
+          "Reverse list and pick first"
+        ],
+        correct: 0,
+        whyWrong: "This is the standard linear scan pattern for min/max.",
+        focus: "Practice accumulator patterns in loops."
+      },
+      {
+        topic: "Chapter 2 - Algorithms",
+        question: "Why is a palindrome check conceptually useful?",
+        options: [
+          "It trains indexing, reversing, and string reasoning",
+          "It only tests math operators",
+          "It requires dictionaries",
+          "It cannot be solved with loops"
+        ],
+        correct: 0,
+        whyWrong: "Palindrome tasks strengthen sequence manipulation skills.",
+        focus: "Connect algorithm steps with sequence concepts."
+      },
+      {
+        topic: "Chapter 2 - Algorithms",
+        question: "When checking if a string has only digits, what are you practicing?",
+        options: [
+          "Input validation and character-level reasoning",
+          "Set intersection",
+          "Dictionary updates only",
+          "Tuple immutability"
+        ],
+        correct: 0,
+        whyWrong: "Digit checks are classic validation and loop/condition practice.",
+        focus: "Validate before converting to numeric types."
+      },
+      {
+        topic: "Chapters 1 & 2 - Problem Solving",
+        question: "You need total quantity per category from product records. Best base structure?",
+        options: [
+          "Dictionary accumulator: key=category, value=running total",
+          "Single string",
+          "Tuple of categories only",
+          "Set of quantities"
+        ],
+        correct: 0,
+        whyWrong: "Grouped totals map naturally to dictionary keys.",
+        focus: "Use dictionary accumulators for grouped aggregations."
+      },
+      {
+        topic: "Chapters 1 & 2 - Problem Solving",
+        question: "Why separate data collection from processing logic?",
+        options: [
+          "It makes programs easier to test, debug, and improve",
+          "It slows down execution",
+          "It is required only in OOP",
+          "It is unnecessary in beginner scripts"
+        ],
+        correct: 0,
+        whyWrong: "Separation of concerns improves clarity at every level.",
+        focus: "Design small clear steps: collect, validate, process, output."
+      },
+      {
+        topic: "Chapters 1 & 2 - Validation",
+        question: "Why validate user input before arithmetic?",
+        options: [
+          "To prevent crashes and wrong logic due to unexpected values",
+          "Because Python validates every input automatically",
+          "Only for mobile apps",
+          "Validation has no impact"
+        ],
+        correct: 0,
+        whyWrong: "Unchecked input is a major source of bugs.",
+        focus: "Always verify format/type constraints early."
+      },
+      {
+        topic: "Chapters 1 & 2 - Validation",
+        question: "If conversion to int may fail, what is the best beginner habit?",
+        options: [
+          "Validate first, then convert, and handle invalid cases clearly",
+          "Convert blindly and ignore errors",
+          "Use float always",
+          "Store everything in sets"
+        ],
+        correct: 0,
+        whyWrong: "Robust code anticipates invalid input paths.",
+        focus: "Plan both valid and invalid execution branches."
+      },
+      {
+        topic: "Chapters 1 & 2 - Reasoning",
+        question: "Why is choosing the right data structure a core skill?",
+        options: [
+          "It simplifies code, improves correctness, and reduces complexity",
+          "Any structure works equally well always",
+          "Only experts need this",
+          "It only affects visual style"
+        ],
+        correct: 0,
+        whyWrong: "Structure choice shapes both logic and maintainability.",
+        focus: "Before coding, decide structure based on required operations."
+      },
+      {
+        topic: "Chapters 1 & 2 - Reasoning",
+        question: "When should you prefer clarity over clever one-liners?",
+        options: [
+          "Almost always while learning and when sharing code",
+          "Never",
+          "Only when code is already correct",
+          "Only in HTML files"
+        ],
+        correct: 0,
+        whyWrong: "Readable logic is easier to debug and learn from.",
+        focus: "Prioritize understandable steps before optimization."
+      },
+      {
+        topic: "Chapters 1 & 2 - Reasoning",
+        question: "What does good beginner debugging usually start with?",
+        options: [
+          "Checking assumptions about values and types at each step",
+          "Rewriting the entire file",
+          "Changing random operators",
+          "Avoiding print outputs"
+        ],
+        correct: 0,
+        whyWrong: "Systematic debugging starts with observing real program state.",
+        focus: "Trace data flow with small checks and clear prints."
+      },
+      {
+        topic: "Chapters 1 & 2 - Reasoning",
+        question: "Why compare beginner and built-in solutions for the same task?",
+        options: [
+          "To understand both core logic and practical Python shortcuts",
+          "Because built-ins are always wrong",
+          "Because loops are useless",
+          "Only to increase file length"
+        ],
+        correct: 0,
+        whyWrong: "Both perspectives strengthen conceptual and practical fluency.",
+        focus: "Learn the algorithm first, then the Pythonic shortcut."
+      },
+      {
+        topic: "Chapters 1 & 2 - Synthesis",
+        question: "You need unique categories from product dictionaries. Which structure for output?",
+        options: ["set", "list with duplicates", "tuple", "string"],
+        correct: 0,
+        whyWrong: "Sets naturally keep unique values and support fast membership checks.",
+        focus: "Use sets when uniqueness is the requirement."
+      },
+      {
+        topic: "Chapters 1 & 2 - Synthesis",
+        question: "If order matters and duplicates are allowed, what should you usually use?",
+        options: ["list", "set", "dict keys only", "bool"],
+        correct: 0,
+        whyWrong: "Lists preserve order and allow duplicates.",
+        focus: "Tie requirements (order, duplicates, mutability) to structure choice."
+      },
+      {
+        topic: "Chapters 1 & 2 - Synthesis",
+        question: "What is the best mindset for chapter 1 and 2 mastery?",
+        options: [
+          "Understand concepts deeply, then practice many small problems",
+          "Memorize syntax without reasoning",
+          "Skip exercises and only read theory",
+          "Use advanced libraries immediately"
+        ],
+        correct: 0,
+        whyWrong: "Mastery comes from concept + repeated application.",
+        focus: "Explain each solution in words, not only code."
+      }
+    ];
+
+    let score = 0;
+    let answered = 0;
+    const total = questions.length;
+    const resultByQuestion = Array(total).fill(null);
+
+    const quizEl = document.getElementById("quiz");
+    const scorePill = document.getElementById("scorePill");
+    const progressPill = document.getElementById("progressPill");
+    const finishBtn = document.getElementById("finishBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const reportEl = document.getElementById("report");
+
+    function renderQuiz() {
+      quizEl.innerHTML = "";
+      questions.forEach((q, qIndex) => {
+        const section = document.createElement("section");
+        section.className = "question";
+
+        const head = document.createElement("div");
+        head.className = "q-head";
+        head.innerHTML = `
+          <h3 class="q-title">Q${qIndex + 1}. ${q.question}</h3>
+          <span class="topic">${q.topic}</span>
+        `;
+
+        const options = document.createElement("div");
+        options.className = "options";
+
+        const feedback = document.createElement("div");
+        feedback.className = "feedback";
+        feedback.id = `feedback-${qIndex}`;
+
+        q.options.forEach((opt, optIndex) => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "option-btn";
+          btn.textContent = opt;
+          btn.addEventListener("click", () => answerQuestion(qIndex, optIndex, btn, options, feedback));
+          options.appendChild(btn);
+        });
+
+        section.appendChild(head);
+        section.appendChild(options);
+        section.appendChild(feedback);
+        quizEl.appendChild(section);
+      });
+
+      updateStatus();
+    }
+
+    function answerQuestion(qIndex, selectedIndex, selectedButton, optionsEl, feedbackEl) {
+      if (resultByQuestion[qIndex] !== null) return;
+
+      const q = questions[qIndex];
+      const isCorrect = selectedIndex === q.correct;
+      resultByQuestion[qIndex] = {
+        correct: isCorrect,
+        topic: q.topic,
+        focus: q.focus,
+        whyWrong: q.whyWrong,
+        selectedIndex: selectedIndex
+      };
+
+      answered += 1;
+      if (isCorrect) score += 1;
+
+      const buttons = optionsEl.querySelectorAll("button");
+      buttons.forEach((btn, i) => {
+        btn.disabled = true;
+        if (i === q.correct) btn.classList.add("correct");
+        if (i === selectedIndex && !isCorrect) btn.classList.add("wrong");
+      });
+
+      if (isCorrect) {
+        feedbackEl.className = "feedback ok";
+        feedbackEl.innerHTML = `<strong>Correct.</strong>Good understanding. Keep using this reasoning pattern.`;
+      } else {
+        feedbackEl.className = "feedback bad";
+        feedbackEl.innerHTML = `<strong>Incorrect.</strong>${q.whyWrong} <br><strong>Focus:</strong> ${q.focus}`;
+      }
+
+      updateStatus();
+      if (answered === total) finishBtn.disabled = false;
+    }
+
+    function updateStatus() {
+      scorePill.textContent = `Score: ${score}`;
+      progressPill.textContent = `Answered: ${answered} / ${total}`;
+    }
+
+    function buildReport() {
+      const percentage = Math.round((score / total) * 100);
+      const topicStats = {};
+      const weakFocus = [];
+
+      resultByQuestion.forEach((r) => {
+        if (!r) return;
+        if (!topicStats[r.topic]) {
+          topicStats[r.topic] = { total: 0, correct: 0 };
+        }
+        topicStats[r.topic].total += 1;
+        if (r.correct) topicStats[r.topic].correct += 1;
+        if (!r.correct) weakFocus.push(`- ${r.topic}: ${r.focus}`);
+      });
+
+      let levelClass = "warn";
+      let levelText = "Good progress";
+      if (percentage >= 85) {
+        levelClass = "good";
+        levelText = "Strong understanding";
+      } else if (percentage < 60) {
+        levelClass = "bad";
+        levelText = "Needs reinforcement";
+      }
+
+      const topicCards = Object.entries(topicStats)
+        .map(([topic, stat]) => {
+          const pct = Math.round((stat.correct / stat.total) * 100);
+          return `
+            <div class="card">
+              <strong>${topic}</strong><br>
+              ${stat.correct} / ${stat.total} correct (${pct}%)
+            </div>
+          `;
+        })
+        .join("");
+
+      reportEl.style.display = "block";
+      reportEl.innerHTML = `
+        <h2>Final Report</h2>
+        <p><strong>Final score:</strong> ${score} / ${total} (${percentage}%)</p>
+        <p class="${levelClass}">${levelText}</p>
+
+        <h3>Performance by topic</h3>
+        <div class="report-grid">${topicCards}</div>
+
+        <h3>What to focus on next</h3>
+        ${weakFocus.length ? `<ul>${weakFocus.map((f) => `<li>${f.substring(2)}</li>`).join("")}</ul>` : "<p>Excellent. No weak topics detected in this attempt.</p>"}
+
+        <h3>Recommended next step</h3>
+        <p>Re-run the quiz and try to explain each answer aloud in your own words. If you can explain the concept, you truly understand it.</p>
+      `;
+      reportEl.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function resetQuiz() {
+      score = 0;
+      answered = 0;
+      for (let i = 0; i < resultByQuestion.length; i += 1) {
+        resultByQuestion[i] = null;
+      }
+      finishBtn.disabled = true;
+      reportEl.style.display = "none";
+      reportEl.innerHTML = "";
+      renderQuiz();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    finishBtn.addEventListener("click", buildReport);
+    resetBtn.addEventListener("click", resetQuiz);
+
+    renderQuiz();
+  </script>
+</body>
+</html>

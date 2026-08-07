@@ -47,3 +47,9 @@ This folder contains short exercises for the second chapter of the course.
 3. Display the most expensive product.
 4. Display all unique categories.
 5. Calculate the total quantity for each category.
+
+## Exercise 8 - Interactive QCM (HTML/CSS/JS)
+1. Open `qcm_ch1_ch2.html` in your browser.
+2. Answer each multiple-choice question.
+3. Read the instant feedback to understand mistakes and what to focus on.
+4. Finish all questions to generate your final learning report and score.
