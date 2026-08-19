@@ -13,12 +13,13 @@ def greet(name):
 def add(a, b):
     print("Sum:", a + b)
 
-def multiply(x = 0, y = 0): # default parameters
+def multiply(x = 1, y = 5): # default parameters
     return x * y
 
 greet("Amina")
 greet("Karim")
 add(4, 6)
 add(10, 25)
+add(x = 8)  
 print("Product:", multiply(3, 4))
 print("Product with default values:", multiply())

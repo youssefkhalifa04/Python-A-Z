@@ -3,24 +3,32 @@
 This file explains the difference between local and global variables.
 """
 
-print("--- Global and local variables ---")
+
 
 counter = 0
 
 
-def increment_counter():
-    global counter
-    counter += 1
-    print("Counter inside the function:", counter)
 
 
 def show_local_variable():
+    global counter
     message = "This variable exists only inside the function"
     print(message)
+    counter + = 1
+   
+    print("Counter inside the function:", counter)
+    
+def newfunction():
+    a = counter 
+    a += 1
+    return a 
 
 
-increment_counter()
-increment_counter()
-show_local_variable()
-print("Counter outside the function:", counter)
+counter  = newfunction()
+
+
+
+
+b = show_local_variable()
+
 #print (message)  # This will raise an error because 'message' is a local variable
