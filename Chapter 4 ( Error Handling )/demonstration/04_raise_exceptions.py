@@ -13,7 +13,7 @@ def check_temperature(temperature):
 
 
 try:
-    print(check_temperature(25))
-    print(check_temperature(-5))
+    print(check_temperature(25)) # 25 
+    print(check_temperature(-5)) # Raises ValueError
 except ValueError as error:
     print("Error:", error)

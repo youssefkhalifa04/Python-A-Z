@@ -1,10 +1,11 @@
 # Correction - Chapter 5 Exercises
 
 ## Exercise 1 - Classes and objects
+
 ```python
 class Book:
-    def __init__(self, title, author, pages):
-        self.title = title
+    def __init__(self, t, author, pages):
+        self.title = t
         self.author = author
         self.pages = pages
 
@@ -20,6 +21,7 @@ book2.show_info()
 ```
 
 ## Exercise 2 - Inheritance and polymorphism
+
 ```python
 class Animal:
     def sound(self):
@@ -43,6 +45,7 @@ for animal in animals:
 ```
 
 ## Exercise 3 - Abstract classes
+
 ```python
 from abc import ABC, abstractmethod
 
@@ -71,6 +74,7 @@ bike.move()
 ```
 
 ## Exercise 4 - Encapsulation
+
 ```python
 class Student:
     def __init__(self, name, section, grade):
@@ -89,6 +93,7 @@ student.show_grade()
 ```
 
 ## Exercise 5 - Interfaces and polymorphism
+
 ```python
 from abc import ABC, abstractmethod
 
@@ -116,6 +121,7 @@ for payment in payments:
 ```
 
 ## Exercise 6 - Composition
+
 ```python
 class Address:
     def __init__(self, city, country):

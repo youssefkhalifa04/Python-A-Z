@@ -41,8 +41,46 @@ def pr (m1 , m2):
        
     return max(l , key = len)
 
-print("the longest common substring is: ", pr(m1, m2))
+
+def starting_position (ch1 , ch2) :
+    if ch1 in ch2 :
+        return ch2.index(ch1)
+    else :
+        return -1
+
+def longtitude (ch) :
+    if "lon" not in ch : 
+        return -1
+    
+    c = ""
+    counter = 0
+    for i in range(starting_position("lon", ch) + 3, len(ch)) :
+        if ch[i] in "0123456789"  or ch[i] == "." :
+            c += ch[i]
+        elif ch[i] == '"' :
+            counter += 1
+            if counter == 2 :
+                break
+
+    return float(c)
+    
+    
+
+test = '   <   trkpt lat=    "257" lon="3.123456">'
+
+
+print ("longtitude: ", longtitude(test))
 
 
 
-        
+
+
+
+def latitude (ch) :
+    l = ch.split('"')
+    return float(l[1])
+
+print ("latitude: ", latitude(test))
+
+
+

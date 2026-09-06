@@ -25,3 +25,33 @@ except ValueError as error:
 finally:
     print("Cleanup is always executed.")
 ```
+
+## Exercise 3 - Creating custom exceptions
+```python
+class InvalidPasswordError(Exception):
+    pass
+
+
+def validate_password(password):
+    if len(password) < 8:
+        raise InvalidPasswordError("Password must be at least 8 characters long.")
+    
+    has_digit = False
+    for char in password:
+        if char.isdigit():
+            has_digit = True
+            break
+    
+    if not has_digit:
+        raise InvalidPasswordError("Password must contain at least one digit.")
+    
+    return True
+
+
+try:
+    password = input("Enter a password: ")
+    validate_password(password)
+    print("Password is valid!")
+except InvalidPasswordError as error:
+    print(f"Password error: {error}")
+```

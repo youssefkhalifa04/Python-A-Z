@@ -18,3 +18,9 @@ This folder contains short exercises for the fourth chapter of the course.
 2. Raise a `ValueError` if the number is negative.
 3. Use `try`, `except`, and `finally` when calling the function.
 4. Print a message in `finally` to show that cleanup always happens.
+
+## Exercise 3 - Creating custom exceptions
+1. Create a custom exception class named `InvalidPasswordError`.
+2. Create a function that validates a password (for example, length >= 8 and contains at least one number).
+3. Raise your custom exception when validation fails.
+4. Use `try` and `except` to catch and handle the custom exception with a clear message.
