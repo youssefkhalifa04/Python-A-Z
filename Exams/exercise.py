@@ -82,3 +82,10 @@ class Library:
 
         return authors[idx_max]
 
+
+
+
+
+
+# every function starts with get_ always written without any parameters and returns a value
+# every function starts with set_ always written with a parameter and returns nothing
